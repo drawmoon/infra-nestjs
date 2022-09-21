@@ -1,5 +1,5 @@
 import { HttpService, Injectable } from '@nestjs/common';
-import { Config } from '../../../../src/microservice';
+import { Config } from 'infra-nestjs/dist/microservice';
 import { AppConfig } from './appconfig';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -15,7 +15,7 @@ export class AppService {
   ) { }
 
   async getHello() {
-    const metadata = await this.httpService.get('http://rootContext:metadata/api/2.0/metadata/table-field/2/metadataCluster')
+    const metadata = await this.httpService.get('http://rootContext:metadata/api/metadata')
       .pipe(
         map((p) => p.data),
         catchError((err) => {
