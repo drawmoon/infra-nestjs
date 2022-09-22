@@ -30,11 +30,11 @@ export class DiscoveryService implements OnModuleInit, OnApplicationBootstrap, O
   }
 
   /**
-   * 根据服务名返回启用并且健康的实例 URI，格式示例：`127.0.0.1:3000`
-   * @param serviceName
-   * @param groupName
-   * @param clusters
-   * @returns
+   * 根据服务名返回启用并且健康的实例 URI
+   * @param {string} serviceName 服务名
+   * @param {string} groupName 分组，默认值为当前注册的分组
+   * @param {string} clusters 集群，默认值为当前注册的集群
+   * @returns {string} 返回健康的实例 URI，示例：`127.0.0.1:3000`
    */
   public async getServiceUri(serviceName: string, groupName?: string, clusters?: string): Promise<string> {
     const service = await this.getInstance(serviceName, groupName, clusters);
@@ -46,15 +46,15 @@ export class DiscoveryService implements OnModuleInit, OnApplicationBootstrap, O
 
   /**
    * 获取所有服务实例
-   * @param serviceName
-   * @param groupName
-   * @param clusters
-   * @param subscribe
-   * @returns
+   * @param {string} serviceName 服务名
+   * @param {string} groupName 分组，默认值为当前注册的分组
+   * @param {string} clusters 集群，默认值为当前注册的集群
+   * @param {boolean} subscribe 订阅，默认值为 `true`
+   * @returns {ServiceInstance[]} 返回服务实例信息的数组
    */
   private async getInstances(serviceName: string, groupName?: string, clusters?: string, subscribe?: boolean): Promise<ServiceInstance[]> {
-    if (!groupName) groupName = 'DEFAULT_GROUP';
-    if (!clusters) clusters = 'DEFAULT';
+    if (!groupName) groupName = this.options.instance.groupName || 'DEFAULT_GROUP';
+    if (!clusters) clusters = this.options.instance.clusterName;
     if (subscribe === undefined) subscribe = true;
 
     // `NacosNamingClient.getAllInstances` return type is `string[]` ?
@@ -65,10 +65,10 @@ export class DiscoveryService implements OnModuleInit, OnApplicationBootstrap, O
 
   /**
    * 获取启用并且健康的服务实例
-   * @param serviceName
-   * @param groupName
-   * @param clusters
-   * @returns
+   * @param {string} serviceName 服务名
+   * @param {string} groupName 分组，默认值为当前注册的分组
+   * @param {string} clusters 集群，默认值为当前注册的集群
+   * @returns {ServiceInstance} 返回服务实例信息
    */
   private async getInstance(serviceName: string, groupName?: string, clusters?: string): Promise<ServiceInstance> {
     const instances = await this.getInstances(serviceName, groupName, clusters, true);
@@ -93,7 +93,6 @@ export class DiscoveryService implements OnModuleInit, OnApplicationBootstrap, O
 
   /**
    * 服务实例注册
-   * @returns
    */
   private register(): Promise<void> {
     const { instance } = this.options;
@@ -110,7 +109,6 @@ export class DiscoveryService implements OnModuleInit, OnApplicationBootstrap, O
 
   /**
    * 服务实例注销
-   * @returns
    */
   private deregister(): Promise<void> {
     const { instance } = this.options;
