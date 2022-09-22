@@ -1,5 +1,5 @@
 import { Module, HttpModule } from '@nestjs/common';
-import { ConfigurationModule, DiscoveryModule } from 'infra-nestjs/dist/microservice';
+import { ConfigurationModule, DiscoveryModule } from 'infra-nestjs';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigService, ConfigModule } from '@nestjs/config';

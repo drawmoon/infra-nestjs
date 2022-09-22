@@ -1,5 +1,5 @@
 import { HttpService, Injectable } from '@nestjs/common';
-import { Config } from 'infra-nestjs/dist/microservice';
+import { Config } from 'infra-nestjs';
 import { AppConfig } from './appconfig';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
