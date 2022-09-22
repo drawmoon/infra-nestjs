@@ -1,1 +1,1 @@
-import './microservice';
+export * from './microservice';
