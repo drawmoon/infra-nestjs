@@ -4,7 +4,7 @@ import { LoggerLevelOptions } from '../logger';
 /**
  * 配置服务的配置选项
  */
-export interface ConfigurationOptions extends LoggerLevelOptions {
+export interface ConfigServiceOptions extends LoggerLevelOptions {
   endpoint?: string;
   serverPort?: number;
   namespace?: string;
@@ -29,8 +29,8 @@ export interface ConfigurationOptions extends LoggerLevelOptions {
 /**
  * 配置服务的配置选项
  */
-export interface ConfigurationAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
-  useFactory: (...args: any[]) => Promise<ConfigurationOptions> | ConfigurationOptions;
+export interface ConfigServiceAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
+  useFactory: (...args: any[]) => Promise<ConfigServiceOptions> | ConfigServiceOptions;
   inject?: any[];
 }
 

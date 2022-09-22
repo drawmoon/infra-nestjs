@@ -3,14 +3,14 @@ import { ScannerService } from '@quickts/nestjs-scanner';
 import { NacosConfigClient } from 'nacos';
 import { defaultJsonParser } from '../../common/util';
 import { MSVC_CONFIGURATION_CLIENT_METADATA, MSVC_CONFIGURATION_METADATA, CONFIGURATION_OPTIONS } from '../constants';
-import { ConfigurationOptions } from '../interfaces';
+import { ConfigServiceOptions } from '../interfaces';
 import { Logger } from '../../logger/logger';
 
 /**
  * 配置管理托管后台服务
  */
 @Injectable()
-export class ConfigurationHostedService implements OnModuleInit, OnModuleDestroy {
+export class ConfigServiceHostedService implements OnModuleInit, OnModuleDestroy {
   private readonly logger: Logger;
   private readonly client: NacosConfigClient;
   private readonly listeners = new Array<{ dataId: string; group: string; listener: (content: string) => Promise<void> }>();
@@ -18,9 +18,9 @@ export class ConfigurationHostedService implements OnModuleInit, OnModuleDestroy
   constructor(
     private readonly scannerService: ScannerService,
     @Inject(CONFIGURATION_OPTIONS)
-    private readonly options: ConfigurationOptions,
+    private readonly options: ConfigServiceOptions,
   ) {
-    this.logger = new Logger(ConfigurationHostedService.name, options.log || 'info');
+    this.logger = new Logger(ConfigServiceHostedService.name, options.log || 'info');
     this.client = new NacosConfigClient(options);
   }
 

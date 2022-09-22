@@ -1,40 +1,40 @@
 import { Module, DynamicModule, Global } from '@nestjs/common';
 import { ScannerModule } from '@quickts/nestjs-scanner';
 import { CONFIGURATION_OPTIONS } from '../constants';
-import { ConfigurationAsyncOptions, ConfigurationOptions } from '../interfaces';
-import { ConfigurationHostedService } from './configuration-hosted.service';
+import { ConfigServiceAsyncOptions, ConfigServiceOptions } from '../interfaces';
+import { ConfigServiceHostedService } from './config-service-hosted.service';
 
 @Global()
 @Module({})
-export class ConfigurationModule {
-  public static register(options: ConfigurationOptions): DynamicModule {
+export class ConfigServiceModule {
+  public static register(options: ConfigServiceOptions): DynamicModule {
     return {
-      module: ConfigurationModule,
+      module: ConfigServiceModule,
       providers: [
         {
           provide: CONFIGURATION_OPTIONS,
           useValue: options,
         },
-        ConfigurationHostedService,
+        ConfigServiceHostedService,
       ],
       imports: [ScannerModule.forRoot(true)],
-      exports: [ConfigurationHostedService],
+      exports: [ConfigServiceHostedService],
     };
   }
 
-  public static registerAsync(options: ConfigurationAsyncOptions): DynamicModule {
+  public static registerAsync(options: ConfigServiceAsyncOptions): DynamicModule {
     return {
-      module: ConfigurationModule,
+      module: ConfigServiceModule,
       providers: [
         {
           provide: CONFIGURATION_OPTIONS,
           useFactory: options.useFactory,
           inject: options.inject || [],
         },
-        ConfigurationHostedService,
+        ConfigServiceHostedService,
       ],
       imports: [ScannerModule.forRoot(true), ...(options.imports || [])],
-      exports: [ConfigurationHostedService],
+      exports: [ConfigServiceHostedService],
     };
   }
 }
