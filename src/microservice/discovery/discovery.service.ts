@@ -130,9 +130,10 @@ export class DiscoveryService implements OnModuleInit, OnApplicationBootstrap, O
 
     // 设置 `HttpService` 的拦截器，自动根据服务名转发到健康的服务实例
     this.httpService.axiosRef.interceptors.request.use(async (config: AxiosRequestConfig) => {
-      if (!config.url) return config;
+      const url = config.baseURL || config.url;
+      if (!url) return config;
 
-      const result = /(?<=:\/\/)[a-zA-Z\.:\-_0-9]+(?=\/|$)/.exec(config.url);
+      const result = /(?<=:\/\/)[a-zA-Z\.:\-_0-9]+(?=\/|$)/.exec(url);
       if (result && result.length > 0) {
         const context = result[0];
         if (context.startsWith('rootContext:')) {
@@ -140,7 +141,12 @@ export class DiscoveryService implements OnModuleInit, OnApplicationBootstrap, O
 
           const serviceName = context.replace('rootContext:', '');
           const uri = await this.getServiceUri(serviceName, groupName, clusterName);
-          config.url = config.url.replace(context, uri);
+          
+          if (config.baseURL) {
+            config.baseURL = url.replace(context, uri);
+          } else {
+            config.url = url.replace(context, uri);
+          }
         }
       }
 
