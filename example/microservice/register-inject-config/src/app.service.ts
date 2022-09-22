@@ -15,7 +15,7 @@ export class AppService {
   ) { }
 
   async getHello() {
-    const metadata = await this.httpService.get('http://rootContext:metadata/api/metadata')
+    const profile = await this.httpService.get('/api/4.0/Profile', {baseURL: 'http://rootContext:metadata'})
       .pipe(
         map((p) => p.data),
         catchError((err) => {
@@ -27,7 +27,7 @@ export class AppService {
     return {
       appname: this.appConfig.appName,
       version: this.appConfig.version,
-      metadata: metadata,
+      profile: profile,
     };
   }
 }

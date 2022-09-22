@@ -1,5 +1,5 @@
 import { Module, HttpModule } from '@nestjs/common';
-import { ConfigurationModule, DiscoveryModule } from 'infra-nestjs';
+import { ConfigServiceModule, DiscoveryModule } from 'infra-nestjs';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigService, ConfigModule } from '@nestjs/config';
@@ -20,7 +20,7 @@ import { ConfigService, ConfigModule } from '@nestjs/config';
       inject: [ConfigService],
       imports: [ConfigModule],
     }),
-    ConfigurationModule.registerAsync({
+    ConfigServiceModule.registerAsync({
       useFactory: (configService: ConfigService) => ({
         serverAddr: configService.get<string>('NACOS_CONFIG_SERVER', '127.0.0.1:8848'),
         namespace: configService.get<string>('NACOS_CONFIG_NAMESPACE', 'public'),

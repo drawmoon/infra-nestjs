@@ -2998,10 +2998,10 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-infra-nestjs@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/infra-nestjs/-/infra-nestjs-0.0.4.tgz#f476a4d434e235718929b54a9cda53b9f407cfbd"
-  integrity sha512-ds/KYPcLCTlBC6XN6JXlSA7yJ/CTQaKHEqYUwIVtFUwS4af0LW8Q9m/Gxe7Z6qJJSbUo9FXE27Tz69r/01vUcQ==
+infra-nestjs@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/infra-nestjs/-/infra-nestjs-0.1.0.tgz#4d6ca145b3d3446cd55b6a7d0265a0486cda9cbb"
+  integrity sha512-ezA0CokiT8v2SYab64nYEgdNXCqQx2oQqcX8W1m2l3FC4AIccexfVQeeonFKk1OX8mpcg+s4W7QDt4WcIlljOw==
   dependencies:
     "@quickts/nestjs-scanner" "^1.0.4"
     nacos "^2.5.0"
