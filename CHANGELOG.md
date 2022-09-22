@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/drawmoon/infra-nestjs/compare/v0.0.5...v0.1.0) (2022-09-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* `Configuration` name to `ConfigService`
+
+### Bug Fixes
+
+* Request to set `baseUrl` failed ([c795e72](https://github.com/drawmoon/infra-nestjs/commit/c795e724ffe36baef96c7ce7767d6c5eef0d9d3d))
+
+
+* `Configuration` name to `ConfigService` ([1fb1a1c](https://github.com/drawmoon/infra-nestjs/commit/1fb1a1cdfa356f1993aca68ad791c90f16a2adc3))
+
 ### [0.0.5](https://github.com/drawmoon/infra-nestjs/compare/v0.0.4...v0.0.5) (2022-09-22)
 
 
