@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/drawmoon/infra-nestjs/compare/v0.0.4...v0.0.5) (2022-09-22)
+
+
+### Features
+
+* get service instance, set `groupName`, `clusters` default value ([81cace8](https://github.com/drawmoon/infra-nestjs/commit/81cace8263c46bbc08d309fd000a0da69396c823))
+
 ### [0.0.4](https://github.com/drawmoon/infra-nestjs/compare/v0.0.3...v0.0.4) (2022-09-22)
 
 
